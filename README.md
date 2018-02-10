@@ -1,0 +1,2 @@
+# CdataFreee
+freeeのRESTAPIをCDataDrivers製品から利用するためのスキーマ定義
