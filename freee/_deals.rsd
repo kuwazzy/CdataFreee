@@ -1,0 +1,69 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <rsb:info title="deals" desc="Generated schema file." xmlns:other="http://www.rssbus.com/ns/rsbscript/2/other">
+    <!-- You can modify the name, type, and column size here.  The name must match the values in the rsb:script block below -->
+    <attr name="amount"                        xs:type="integer" readonly="false" other:xPath="amount"                         />
+    <attr name="company_id"                    xs:type="integer" readonly="false" other:xPath="company_id"                     />
+    <attr name="details_account_item_id"       xs:type="integer" readonly="false" other:xPath="details/account_item_id"        />
+    <attr name="details_amount"                xs:type="integer" readonly="false" other:xPath="details/amount"                 />
+    <attr name="details_description"           xs:type="string"  readonly="false" other:xPath="details/description"            />
+    <attr name="details_entry_side"            xs:type="string"  readonly="false" other:xPath="details/entry_side"             />
+    <attr name="details_item_id"               xs:type="integer" readonly="false" other:xPath="details/item_id"                />
+    <attr name="details_section_id"            xs:type="unknown" readonly="false" other:xPath="details/section_id"             />
+    <attr name="details_tax_code"              xs:type="integer" readonly="false" other:xPath="details/tax_code"               />
+    <attr name="details_tax_id"                xs:type="integer" readonly="false" other:xPath="details/tax_id"                 />
+    <attr name="details_vat"                   xs:type="integer" readonly="false" other:xPath="details/vat"                    />
+    <attr name="due_amount"                    xs:type="integer" readonly="false" other:xPath="due_amount"                     />
+    <attr name="due_date"                      xs:type="unknown" readonly="false" other:xPath="due_date"                       />
+    <attr name="id"                            xs:type="integer" readonly="false" other:xPath="id"                             />
+    <attr name="issue_date"                    xs:type="date"    readonly="false" other:xPath="issue_date"                     />
+    <attr name="partner_id"                    xs:type="integer" readonly="false" other:xPath="partner_id"                     />
+    <attr name="payments_amount"               xs:type="integer" readonly="false" other:xPath="payments/amount"                />
+    <attr name="payments_date"                 xs:type="date"    readonly="false" other:xPath="payments/date"                  />
+    <attr name="payments_from_walletable_id"   xs:type="integer" readonly="false" other:xPath="payments/from_walletable_id"    />
+    <attr name="payments_from_walletable_type" xs:type="string"  readonly="false" other:xPath="payments/from_walletable_type"  />
+    <attr name="ref_number"                    xs:type="unknown" readonly="false" other:xPath="ref_number"                     />
+    <attr name="type"                          xs:type="string"  readonly="false" other:xPath="type"                           />
+  </rsb:info>
+
+  <rsb:set attr="uri" value="https://api.freee.co.jp/api/1/deals" />
+
+  <!-- Column XPaths are relative to a RepeatElement that splits the JSON into rows. -->
+  <rsb:set attr="RepeatElement" value="/deals" />
+
+  <!-- The GET method corresponds to SELECT. Within the script block, you can see the URI modified to append a query string parameter. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
+  <rsb:script method="GET">
+    <rsb:call op="jsonproviderGet">
+      <rsb:push/>
+    </rsb:call>
+  </rsb:script>
+
+  <!-- To add support for INSERTS please see the INSERT Execution page within the help for further information and examples. -->
+  <rsb:script method="POST">
+    <rsb:set attr="method" value="POST"/>
+    <rsb:call op="jsonproviderGet">
+      <rsb:throw code="500" desc="Inserts are not currently supported."/>
+      <rsb:push/>
+    </rsb:call>
+  </rsb:script>
+
+  <!-- To add support for UPDATES please see the UPDATE Execution page within the help for further information and examples. -->
+  <rsb:script method="MERGE">
+    <rsb:set attr="method" value="PUT"/>
+    <rsb:call op="jsonproviderGet">
+      <rsb:throw code="500" desc="Updates are not currently supported."/>
+      <rsb:push/>
+    </rsb:call>
+  </rsb:script>
+
+  <!-- To add support for DELETES please see the DELETE Execution page within the help for further information and examples. -->
+  <rsb:script method="DELETE">
+    <rsb:set attr="method" value="DELETE"/>
+    <rsb:call op="jsonproviderGet">
+      <rsb:throw code="500" desc="Deletes are not currently supported."/>
+      <rsb:push/>
+    </rsb:call>
+  </rsb:script>
+
+</rsb:script>
