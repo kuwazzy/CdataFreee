@@ -25,17 +25,31 @@
     <attr name="payments_from_walletable_type" xs:type="string"  readonly="false" other:xPath="payments/from_walletable_type"  />
     <attr name="ref_number"                    xs:type="unknown" readonly="false" other:xPath="ref_number"                     />
     <attr name="type"                          xs:type="string"  readonly="false" other:xPath="type"                           />
+
+    <input name="rows@next" desc="Identifier for the next page of results. Do not set this value manually." />
+
   </rsb:info>
 
-  <rsb:set attr="uri" value="https://api.freee.co.jp/api/1/deals" />
-
-  <!-- Column XPaths are relative to a RepeatElement that splits the JSON into rows. -->
-  <rsb:set attr="RepeatElement" value="/deals" />
+  <rsb:set attr="RepeatElement" value="/deals" />  
 
   <!-- The GET method corresponds to SELECT. Within the script block, you can see the URI modified to append a query string parameter. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
   <rsb:script method="GET">
-    <rsb:call op="jsonproviderGet">
-      <rsb:push/>
+
+    <rsb:set attr="enablepaging" value="TRUE" />
+    <rsb:set attr="limit" value="100" />
+
+    <rsb:check attr="rows@next" >
+      <rsb:set attr="offset" value="[rows@next | add([limit])]" />
+      <rsb:else>
+        <rsb:set attr="offset" value="20" />
+      </rsb:else>
+    </rsb:check>
+
+    <rsb:set  attr="uri"  value="https://api.freee.co.jp/api/1/deals?limit=[limit]&offset=[offset]" />
+
+    <rsb:call  op="jsonproviderGet">
+      <rsb:set attr="rows@next" value="[offset]" />
+      <rsb:push />
     </rsb:call>
   </rsb:script>
 
