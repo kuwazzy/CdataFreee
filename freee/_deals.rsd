@@ -36,12 +36,12 @@
   <rsb:script method="GET">
 
     <rsb:set attr="enablepaging" value="TRUE" />
-    <rsb:set attr="limit" value="100" />
+    <rsb:set attr="limit" value="20" />
 
     <rsb:check attr="rows@next" >
       <rsb:set attr="offset" value="[rows@next | add([limit])]" />
       <rsb:else>
-        <rsb:set attr="offset" value="20" />
+        <rsb:set attr="offset" value="0" />
       </rsb:else>
     </rsb:check>
 
