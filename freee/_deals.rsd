@@ -5,24 +5,13 @@
     <!-- You can modify the name, type, and column size here.  The name must match the values in the rsb:script block below -->
     <attr name="amount"                        xs:type="integer" readonly="false" other:xPath="amount"                         />
     <attr name="company_id"                    xs:type="integer" readonly="false" other:xPath="company_id"                     />
-    <attr name="details_account_item_id"       xs:type="integer" readonly="false" other:xPath="details/account_item_id"        />
-    <attr name="details_amount"                xs:type="integer" readonly="false" other:xPath="details/amount"                 />
-    <attr name="details_description"           xs:type="string"  readonly="false" other:xPath="details/description"            />
-    <attr name="details_entry_side"            xs:type="string"  readonly="false" other:xPath="details/entry_side"             />
-    <attr name="details_item_id"               xs:type="integer" readonly="false" other:xPath="details/item_id"                />
-    <attr name="details_section_id"            xs:type="unknown" readonly="false" other:xPath="details/section_id"             />
-    <attr name="details_tax_code"              xs:type="integer" readonly="false" other:xPath="details/tax_code"               />
-    <attr name="details_tax_id"                xs:type="integer" readonly="false" other:xPath="details/tax_id"                 />
-    <attr name="details_vat"                   xs:type="integer" readonly="false" other:xPath="details/vat"                    />
+    <attr name="details"                       xs:type="string"  readonly="false" other:xPath="details"                        />
     <attr name="due_amount"                    xs:type="integer" readonly="false" other:xPath="due_amount"                     />
     <attr name="due_date"                      xs:type="unknown" readonly="false" other:xPath="due_date"                       />
     <attr name="id"                            xs:type="integer" readonly="false" other:xPath="id"                             />
     <attr name="issue_date"                    xs:type="date"    readonly="false" other:xPath="issue_date"                     />
     <attr name="partner_id"                    xs:type="integer" readonly="false" other:xPath="partner_id"                     />
-    <attr name="payments_amount"               xs:type="integer" readonly="false" other:xPath="payments/amount"                />
-    <attr name="payments_date"                 xs:type="date"    readonly="false" other:xPath="payments/date"                  />
-    <attr name="payments_from_walletable_id"   xs:type="integer" readonly="false" other:xPath="payments/from_walletable_id"    />
-    <attr name="payments_from_walletable_type" xs:type="string"  readonly="false" other:xPath="payments/from_walletable_type"  />
+    <attr name="payments"                      xs:type="string"  readonly="false" other:xPath="payments"                       />
     <attr name="ref_number"                    xs:type="unknown" readonly="false" other:xPath="ref_number"                     />
     <attr name="type"                          xs:type="string"  readonly="false" other:xPath="type"                           />
 
@@ -30,7 +19,7 @@
 
   </rsb:info>
 
-  <rsb:set attr="RepeatElement" value="/deals" />  
+  <rsb:set attr="RepeatElement" value="/deals" />
 
   <!-- The GET method corresponds to SELECT. Within the script block, you can see the URI modified to append a query string parameter. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
   <rsb:script method="GET">
